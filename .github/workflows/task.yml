@@ -28,6 +28,7 @@ jobs:
           install: |
             Mojolicious
             Modern::Perl
+            Path::Tiny
 
       - name: curl https://www.legislation.gov.uk/new/data.feed --output feed.rss
         run: curl https://www.legislation.gov.uk/new/data.feed --output feed.rss 
