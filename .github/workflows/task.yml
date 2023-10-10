@@ -40,7 +40,8 @@ jobs:
         run: |
           git config --global user.email "robertbrook@fastmail.fm"
           git config --global user.name "Robert Brook"
-          git add feed.rss
+          # git add feed.rss
+          git add output.html
           git commit -m "Update feed.rss"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git push
