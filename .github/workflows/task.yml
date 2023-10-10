@@ -31,7 +31,10 @@ jobs:
 
       - name: curl https://www.legislation.gov.uk/new/data.feed --output feed.rss
         run: curl https://www.legislation.gov.uk/new/data.feed --output feed.rss 
-         
+
+      - name: perl puller.pl
+        run: perl puller.pl
+        
       - name: Commit changes
         run: |
           git config --global user.email "robertbrook@fastmail.fm"
@@ -43,5 +46,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
-      - name: perl puller.pl
-        run: perl puller.pl
+     
