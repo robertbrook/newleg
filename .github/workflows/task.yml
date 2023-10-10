@@ -21,12 +21,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      - name: install mojo
-        run: curl -L https://cpanmin.us | perl - -M https://cpan.metacpan.org -n Mojolicious
-        
-      - name: install Modern::Perl
-        run: curl -L https://cpanmin.us | perl - -M https://cpan.metacpan.org -n Modern::Perl
+      
+      - name: install cpanm and multiple modules
+        uses: perl-actions/install-with-cpanm@stable
+        with:
+          install: |
+            Mojolicious
+            Modern::Perl
 
       - name: curl https://www.legislation.gov.uk/new/data.feed --output feed.rss
         run: curl https://www.legislation.gov.uk/new/data.feed --output feed.rss 
