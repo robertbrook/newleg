@@ -17,8 +17,9 @@ my $output = $mt->render(<<'MAIN');
   % my $now = localtime;
   Time: <%= $now->hms %>
 </div>
-
+<main>
  % for my $entry ( $dom->find('entry')->each ) {
+  <article>
     SELF <%= $entry->at("link[rel='self']")->attr('href') %>
     DMT <%= $entry->at( 'ukm|DocumentMainType',
         ukm => 'http://www.legislation.gov.uk/namespaces/metadata' )
@@ -32,9 +33,9 @@ my $output = $mt->render(<<'MAIN');
     
     UPDATED <%= $entry->at('updated')->text %>
     PUBLISHED <%= $entry->at('published')->text %>
-    
+    </article>
 % }
-  
+  </main>
 MAIN
 
 path('output.html')->spew($output);
