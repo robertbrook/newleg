@@ -47,25 +47,22 @@ my $output = $mt->render(<<'HTML');
 <main>
  % for my $entry ( $dom->find('entry')->each ) {
   <article>
-  <p><strong><%= $entry->at('title')->text %></strong></p>
+  <span class='title'><%= $entry->at('title')->text %></span>
   <a href="<%= $entry->at("link[rel='self']")->attr('href') %>"><%= $entry->at("link[rel='self']")->attr('href') %></a>
     
-      
     % if ( length $entry->at('summary')->text ) {
-<br>
-    <q><%= $entry->at('summary')->text %></q>
+    <span class='summary'><%= $entry->at('summary')->text %></span>
         % }
     
-    <li>Document type: <%= $entry->at( 'ukm|DocumentMainType',
+    <span class='type'><%= $entry->at( 'ukm|DocumentMainType',
         ukm => 'http://www.legislation.gov.uk/namespaces/metadata' )
-      ->attr('Value') %>
+      ->attr('Value') %></span>
       
       
     % if ( length $entry->at('category') ) {
-        <li>Category: <%=  $entry->at('category')->attr('term') %>
+        <span type='category'><%=  $entry->at('category')->attr('term') %></span>
     % }
-        <p>Published: <time class='published'><%= $entry->at('published')->text %></time></p>
-
+    <p>Published: <time class='published'><%= $entry->at('published')->text %></time></p>
     <p>Updated: <time class='updated'><%= $entry->at('updated')->text %></time></p>
     </article>
 % }
